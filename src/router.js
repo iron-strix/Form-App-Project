@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomePage from '@/views/HomePage.vue'
+import LoginPage from '@/views/LoginPage.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: HomePage },
+  { path: '/', name: 'Login', component: LoginPage },
   { path: '/workspace', name: 'Workspace', component: () => import('@/views/WorkspacePage.vue') },
   { path: '/submitted', name: 'Submitted', component: () => import('@/views/SubmittedPage.vue') },
   { path: '/form', name: 'Form', component: () => import('@/views/FormEditPage.vue') },

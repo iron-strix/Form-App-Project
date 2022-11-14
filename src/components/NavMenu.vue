@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/">Login</RouterLink>
     <RouterLink to="/workspace">Workspace</RouterLink>
     <RouterLink to="/submitted">Submitted</RouterLink>
     <RouterLink to="/form">Edit Form</RouterLink>
