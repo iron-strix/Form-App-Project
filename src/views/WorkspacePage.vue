@@ -14,7 +14,7 @@ import FormCard from '@/components/FormCard.vue'
 
 <style scoped lang="postcss">
 .wrapper {
-  @apply container mx-auto grid w-full;
+  @apply container mx-auto w-full flex-col;
 
   & h1 {
     @apply p-8 text-center align-top text-6xl font-thin text-slate-800;
