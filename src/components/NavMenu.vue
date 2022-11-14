@@ -1,7 +1,11 @@
 <template>
   <nav>
     <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/other">Other</RouterLink>
+    <RouterLink to="/workspace">Workspace</RouterLink>
+    <RouterLink to="/submitted">Submitted</RouterLink>
+    <RouterLink to="/form">Edit Form</RouterLink>
+    <RouterLink to="/settings">Settings</RouterLink>
+    <RouterLink to="/admin">Admin Panel</RouterLink>
   </nav>
 </template>
 

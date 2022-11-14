@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-const title = ref('Hello There ✋')
+const title = ref('This should be the login page')
 </script>
 
 <template>
