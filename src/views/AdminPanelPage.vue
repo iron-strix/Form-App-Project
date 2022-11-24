@@ -1,5 +1,16 @@
 <template>
-  <main class="flex min-h-screen items-center justify-center">
-    <h1 class="text-6xl font-thin text-slate-800">I'm the Admin Panel Page</h1>
+  <main class="flex min-h-screen">
+    <div class="settings-container">
+      <div class="header">Admin Panel</div>
+    </div>
   </main>
 </template>
+
+<style lang="postcss" scoped>
+.settings-containter {
+  @apply container mx-auto w-full;
+}
+.header {
+  @apply mx-auto w-full p-8 text-start align-top text-4xl text-slate-800;
+}
+</style>
