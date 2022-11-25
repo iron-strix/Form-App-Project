@@ -1,11 +1,12 @@
+<script setup></script>
+
 <template>
   <nav>
-    <RouterLink to="/">Login</RouterLink>
-    <RouterLink to="/workspace">Workspace</RouterLink>
-    <RouterLink to="/submitted">Submitted</RouterLink>
-    <RouterLink to="/form">Edit Form</RouterLink>
-    <RouterLink to="/settings">Settings</RouterLink>
-    <RouterLink to="/admin">Admin Panel</RouterLink>
+    <RouterLink to="/workspace"><font-awesome-icon icon="fa-solid fa-house" /></RouterLink>
+    <RouterLink to="/submitted"><font-awesome-icon icon="fa-solid fa-square-check" /></RouterLink>
+    <RouterLink to="/settings"><font-awesome-icon icon="fa-solid fa-bars" /></RouterLink>
+    <RouterLink to="/admin"><font-awesome-icon icon="fa-solid fa-screwdriver-wrench" /></RouterLink>
+    <RouterLink to="/"><font-awesome-icon icon="fa-solid fa-arrow-right-to-bracket" /></RouterLink>
   </nav>
 </template>
 

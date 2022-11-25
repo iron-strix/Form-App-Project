@@ -9,6 +9,7 @@ const routes = [
   { path: '/form', name: 'Form', component: () => import('@/views/FormEditPage.vue') },
   { path: '/settings', name: 'Settings', component: () => import('@/views/SettingsPage.vue') },
   { path: '/admin', name: 'Admin', component: () => import('@/views/AdminPanelPage.vue') },
+  { path: '/view', name: 'View', component: () => import('@/views/FormViewPage.vue') },
 ]
 
 const router = createRouter({

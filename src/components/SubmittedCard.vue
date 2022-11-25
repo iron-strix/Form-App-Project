@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <div class="card-text"><p>Example Submitted Form Card</p></div>
+    <RouterLink to="/view"
+      ><div class="card-text"><p>Example Submitted Form Card</p></div></RouterLink
+    >
   </div>
 </template>
 

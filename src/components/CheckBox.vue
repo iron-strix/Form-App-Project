@@ -1,15 +1,3 @@
-<template>
-  <input
-    :id="fieldId"
-    type="checkbox"
-    :checked="checked"
-    class="mr-2"
-    @input="(event) => $emit('update:checked', event.target.checked)"
-  />
-  <label :for="fieldId">
-    {{ label }}
-  </label>
-</template>
 <script>
 export default {
   props: {
@@ -25,3 +13,15 @@ export default {
   },
 }
 </script>
+<template>
+  <input
+    :id="fieldId"
+    type="checkbox"
+    :checked="checked"
+    class="mr-2"
+    @input="(event) => $emit('update:checked', event.target.checked)"
+  />
+  <label :for="fieldId">
+    {{ label }}
+  </label>
+</template>
