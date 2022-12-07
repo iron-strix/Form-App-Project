@@ -53,8 +53,13 @@ const putForm = async (id, body) => {
   const res = await api.put(`/forms/${id}`, body)
 }
 
+const createForm = async (body) => {
+  const res = await api.post('/forms', body)
+  return res.data.formId
+}
+
 const useAPI = () => {
-  return { loading, getUser, getForms, getForm, putForm, localUser, forms }
+  return { loading, getUser, getForms, getForm, putForm, createForm, localUser, forms }
 }
 
 export default useAPI
