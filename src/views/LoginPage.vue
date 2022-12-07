@@ -1,4 +1,28 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { useAuth } from '@/composables/useAuth'
+import { useRouter, useRoute } from 'vue-router'
+//import router from '@/router'
+
+const router = useRouter()
+const route = useRoute()
+
+const { login, logout } = useAuth()
+const username = ref('')
+const password = ref('')
+
+const logUserIn = async () => {
+  if (await login(username.value, password.value)) {
+    if (route.query.redirect) {
+      router.push(route.query.redirect)
+    } else {
+      router.push({ name: 'Workspace' })
+    }
+  } else {
+    logout()
+  }
+}
+</script>
 
 <template>
   <form class="login-form" @submit.prevent="logUserIn">

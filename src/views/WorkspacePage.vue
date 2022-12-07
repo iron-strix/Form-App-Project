@@ -1,13 +1,24 @@
 <script setup>
 import FormCard from '@/components/FormCard.vue'
+import useAPI from '@/composables/useAPI'
+
+const { localUser, getUser, getForms, forms } = useAPI()
+getForms()
+getUser()
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center">
     <div class="wrapper">
-      <h1>New Forms Go Here</h1>
-      <div class="sub-wrapper">
-        <FormCard v-for="n in 5" :key="n" />
-      </div>
+      <Suspense>
+        <div>
+          <h1 v-if="localUser.email">{{ localUser.email }}'s Forms</h1>
+
+          <div class="sub-wrapper">
+            <FormCard v-for="form in forms" :key="form.ownerId" :form="form" />
+          </div>
+        </div>
+        <template #fallback><div>Loading...</div></template>
+      </Suspense>
     </div>
   </main>
 </template>

@@ -1,6 +1,37 @@
+<script setup>
+import { ref } from 'vue'
+import useAPI from '@/composables/useAPI'
+
+const { getForm } = useAPI()
+
+const props = defineProps({
+  form: {
+    type: Object,
+    required: true,
+    default: () => {
+      return {
+        createdAt: '2022-01-01',
+        formId: '123',
+        ownerId: 'John_doe@example.com',
+        name: 'Form Name',
+        body: {},
+        updatedAt: '2022-01-01',
+      }
+    },
+  },
+})
+
+const formResponse = await getForm(props.form.formId)
+const form = ref(formResponse)
+</script>
+
 <template>
   <div class="card">
-    <div class="card-text"><p>Example Form Card</p></div>
+    <RouterLink :to="`/form/${form.formId}`">
+      <div class="card-text">
+        <p>{{ props.form.name }}</p>
+      </div>
+    </RouterLink>
   </div>
 </template>
 
