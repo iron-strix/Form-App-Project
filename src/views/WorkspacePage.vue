@@ -1,11 +1,10 @@
 <script setup>
-import { ref, render } from 'vue'
+import { ref } from 'vue'
 import FormCard from '@/components/FormCard.vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import useAPI from '@/composables/useAPI'
 
 const router = useRouter()
-const route = useRoute()
 
 const { localUser, getUser, getForms, createForm, deleteForm, forms } = useAPI()
 getForms()
@@ -19,7 +18,7 @@ const forceRerender = () => {
 }
 
 function removeForm(formId, index) {
-  console.log(formId)
+  // console.log(formId)
   deleteForm(formId)
   forms.value.splice(index, 1)
   forceRerender()
@@ -61,7 +60,7 @@ async function computeForms() {
     return obj.ownerId === localUser.value.userUUID
   })
   render_forms.value = result
-  console.log(render_forms)
+  // console.log(render_forms)
 }
 
 computeForms()

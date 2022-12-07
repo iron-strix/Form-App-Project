@@ -10,6 +10,7 @@ const { auth, user, localUID, isAuthenticated } = useAuth()
 const loading = ref(false)
 const localUser = ref('')
 const forms = ref([])
+const formResponses = ref([])
 
 const localAuth = auth
 
@@ -62,8 +63,37 @@ const deleteForm = async (id) => {
   const res = await api.delete(`/forms/${id}`)
 }
 
+const getFormResponses = async () => {
+  const { data } = await api.get('/formResponses/')
+  formResponses.value = data
+}
+
+const getFormResponse = async (id) => {
+  console.log(id)
+  const { data } = await api.get(`/formResponses/${id}`)
+  return data
+}
+
+const createResponse = async (id, body) => {
+  const res = await api.post(`/formResponses/${id}`, body)
+}
+
 const useAPI = () => {
-  return { loading, getUser, getForms, getForm, putForm, createForm, deleteForm, localUser, forms }
+  return {
+    loading,
+    getFormResponse,
+    getFormResponses,
+    createResponse,
+    getUser,
+    getForms,
+    getForm,
+    putForm,
+    createForm,
+    deleteForm,
+    localUser,
+    forms,
+    formResponses,
+  }
 }
 
 export default useAPI

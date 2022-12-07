@@ -1,5 +1,5 @@
 <script setup>
-import FormEditCard from '@/components/FormEditCard.vue'
+import FormEditCard from '@/components/FormEditDocument.vue'
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center">

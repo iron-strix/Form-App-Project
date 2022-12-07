@@ -1,6 +1,54 @@
+<script setup>
+import { ref } from 'vue'
+import useAPI from '@/composables/useAPI'
+
+const { getFormResponse, getForms, forms } = useAPI()
+
+const props = defineProps({
+  formResponse: {
+    type: Object,
+    required: true,
+    default: () => {
+      return {
+        createdAt: '2022-01-01',
+        formResponseId: '123',
+        ownerId: 'John_doe@example.com',
+        parentFormId: '456',
+        replies: [],
+        updatedAt: '2022-01-01',
+      }
+    },
+  },
+})
+
+getForms()
+
+const computedName = ref('')
+
+const formResponseResponse = await getFormResponse(props.formResponse.formResponseId)
+const formResponse = ref(formResponseResponse)
+computeName()
+//console.log(forms.value[0].name)
+//console.log(forms.value[props.formResponse.parentFormId])
+
+function computeName() {
+  forms.value.forEach((form) => {
+    //console.log(form)
+    if (form.formId === props.formResponse.parentFormId) {
+      //console.log(form.name)
+      computedName.value = form.name
+    }
+  })
+}
+</script>
+
 <template>
   <div class="card">
-    <div class="card-text"><p>Example Submitted Form Card</p></div>
+    <RouterLink :to="`/viewResponse/${formResponse.formResponseId}`">
+      <div class="card-text">
+        <p>{{ props.formResponse.formResponseId }} reply to {{ computedName }}</p>
+      </div>
+    </RouterLink>
   </div>
 </template>
 

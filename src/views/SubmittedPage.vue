@@ -1,13 +1,31 @@
 <script setup>
-import FormCard from '@/components/SubmittedCard.vue'
+import SubmittedCard from '@/components/SubmittedCard.vue'
+import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import useAPI from '@/composables/useAPI'
+
+const router = useRouter()
+const route = useRoute()
+
+const { getFormResponses, formResponses } = useAPI()
+getFormResponses()
+let trash = ref(formResponses)
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center">
     <div class="wrapper">
       <h1>Submitted Forms Go Here</h1>
-      <div class="sub-wrapper">
-        <FormCard v-for="n in 8" :key="n" />
-      </div>
+      <Suspense>
+        <div>
+          <SubmittedCard
+            v-for="formResponse in formResponses"
+            :key="formResponse.ownerId"
+            class="form-card"
+            :form-response="formResponse"
+          />
+        </div>
+        <template #fallback><div>Loading...</div></template>
+      </Suspense>
     </div>
   </main>
 </template>
