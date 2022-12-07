@@ -58,8 +58,12 @@ const createForm = async (body) => {
   return res.data.formId
 }
 
+const deleteForm = async (id) => {
+  const res = await api.delete(`/forms/${id}`)
+}
+
 const useAPI = () => {
-  return { loading, getUser, getForms, getForm, putForm, createForm, localUser, forms }
+  return { loading, getUser, getForms, getForm, putForm, createForm, deleteForm, localUser, forms }
 }
 
 export default useAPI
