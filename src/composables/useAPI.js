@@ -29,7 +29,7 @@ const getUser = async () => {
       localUser.value = user.uid
       const { data } = await api.get(`/users/${localUser.value}`)
       //const { data } = await api.get(`/users/`)
-      console.log(localUID)
+      //console.log(localUID)
       localUser.value = data
       loading.value = false
     } else {
@@ -49,7 +49,7 @@ const getForm = async (id) => {
 }
 
 const putForm = async (id, body) => {
-  console.log(body)
+  //console.log(body)
   const res = await api.put(`/forms/${id}`, body)
 }
 

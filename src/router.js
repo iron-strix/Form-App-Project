@@ -4,6 +4,8 @@ import LoginPage from '@/views/LoginPage.vue'
 import FormEditPage from '@/views/FormEditPage.vue'
 
 import { useAuth } from '@/composables/useAuth'
+import FormResponseVue from './views/FormResponse.vue'
+import FormList from '@/views/FormList.vue'
 
 const { isAuthenticated } = useAuth()
 
@@ -12,6 +14,8 @@ const routes = [
   { path: '/workspace', name: 'Workspace', component: () => import('@/views/WorkspacePage.vue') },
   { path: '/submitted', name: 'Submitted', component: () => import('@/views/SubmittedPage.vue') },
   { path: '/form/:id', name: 'Form', component: FormEditPage },
+  { path: '/formList/', name: 'Form Responses List', component: FormList },
+  { path: '/formResponse/:id', name: 'Form Response', component: FormResponseVue },
   { path: '/settings', name: 'Settings', component: () => import('@/views/SettingsPage.vue') },
   { path: '/admin', name: 'Admin', component: () => import('@/views/AdminPanelPage.vue') },
 ]

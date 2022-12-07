@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, render } from 'vue'
 import FormCard from '@/components/FormCard.vue'
 import { useRouter, useRoute } from 'vue-router'
 import useAPI from '@/composables/useAPI'
@@ -12,6 +12,7 @@ getForms()
 getUser()
 
 const componentKey = ref(0)
+const render_forms = ref([])
 
 const forceRerender = () => {
   componentKey.value += 1
@@ -22,6 +23,11 @@ function removeForm(formId, index) {
   deleteForm(formId)
   forms.value.splice(index, 1)
   forceRerender()
+}
+
+function respondForm() {
+  // console.log('Repond form click!')
+  router.push('/formList/')
 }
 
 async function newForm() {
@@ -48,16 +54,28 @@ async function newForm() {
     router.push(`/form/${path}`)
   }
 }
+async function computeForms() {
+  await new Promise((r) => setTimeout(r, 500))
+
+  const result = forms.value.filter((obj) => {
+    return obj.ownerId === localUser.value.userUUID
+  })
+  render_forms.value = result
+  console.log(render_forms)
+}
+
+computeForms()
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center">
     <div class="wrapper">
       <Suspense>
         <div class="grid w-auto content-center items-center justify-center bg-violet-600">
-          <button class="new-form-button" @click="newForm()">Add New Form</button>
-          <h1 v-if="localUser.email">{{ localUser.email }}'s Forms</h1>
+          <button class="new-form-button" @click="newForm()">Create New Form</button>
+          <button class="respond-form-button" @click="respondForm()">Respond to a Form</button>
+          <h1 v-if="localUser.email">{{ localUser.email }}'s Owned Forms</h1>
           <div class="sub-wrapper">
-            <div v-for="(form, index) in forms" :key="form.ownerId" class="form-card" :form="form">
+            <div v-for="(form, index) in render_forms" :key="form.ownerId" class="form-card" :form="form">
               <FormCard :key="componentKey" :form="form" />
               <button
                 class="relative -top-24 left-40 -bottom-4 rounded-full bg-red-500 px-3 py-1 text-xs hover:bg-white"
@@ -81,11 +99,15 @@ async function newForm() {
 .new-form-button {
   @apply m-4 w-auto content-center rounded-md bg-gray-700 p-4 text-center text-white;
 }
+
+.respond-form-button {
+  @apply m-4 w-auto content-center rounded-md bg-gray-700 p-4 text-center text-white;
+}
 .wrapper {
   @apply container mx-auto w-full;
 
   & h1 {
-    @apply p-8 text-center align-top text-6xl font-thin text-slate-800;
+    @apply p-8 text-center align-top text-4xl font-thin text-slate-800;
   }
 }
 .sub-wrapper {
