@@ -28,8 +28,8 @@ const computedOwner = ref('')
 
 function computeOwner() {
   users.forEach((user) => {
-    console.log(user)
-    console.log(user['userUUID'])
+    //console.log(user)
+    //console.log(user['userUUID'])
     if (user['userUUID'] === props.form.ownerId) {
       //console.log(form.name)
       computedOwner.value = user['email']

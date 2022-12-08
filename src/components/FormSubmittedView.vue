@@ -12,9 +12,9 @@ const formResponse = await getFormResponse(route.params.id)
 const formRef = ref(formResponse)
 const form = await getForm(formRef.value.parentFormId)
 
-console.log(form)
-console.log('formRef value -- ', formRef.value)
-console.log(formRef.value['replies'][0])
+//console.log(form)
+//console.log('formRef value -- ', formRef.value)
+//console.log(formRef.value['replies'][0])
 
 const put_title = ref(form.name)
 const put_description = ref(form.description)

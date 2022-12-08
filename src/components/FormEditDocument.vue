@@ -17,7 +17,7 @@ const isLoading = ref(false)
 
 function fillQuestions() {
   formRef.value.body.forEach((v) => {
-    console.log(v)
+    //console.log(v)
     put_questions.value.push(v)
   })
 }
@@ -25,8 +25,8 @@ function fillQuestions() {
 const collectForm = () => {
   isLoading.value = true
   fillQuestions()
-  console.log(put_title.value)
-  console.log('Put questions:', put_questions)
+  //console.log(put_title.value)
+  //console.log('Put questions:', put_questions)
   const putData = {
     name: put_title.value,
     description: put_description.value,

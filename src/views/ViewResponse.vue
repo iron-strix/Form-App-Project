@@ -1,6 +1,6 @@
 <script setup>
 import FormSubmittedView from '@/components/FormSubmittedView.vue'
-console.log('hello there')
+//console.log('hello there')
 </script>
 
 <template>

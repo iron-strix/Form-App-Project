@@ -74,7 +74,7 @@ const getFormResponses = async () => {
 }
 
 const getFormResponse = async (id) => {
-  console.log(id)
+  //console.log(id)
   const { data } = await api.get(`/formResponses/${id}`)
   return data
 }
