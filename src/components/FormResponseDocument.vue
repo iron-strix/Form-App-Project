@@ -58,8 +58,8 @@ async function reload() {
           />
         </div>
       </div>
+      <button class="card-document-submit" :disabled="isLoading" @click="collectResponses()">Send Form Response</button>
     </div>
-    <button class="card-document-submit" :disabled="isLoading" @click="collectResponses()">Send Form Response</button>
   </div>
 </template>
 <style scoped lang="postcss">
