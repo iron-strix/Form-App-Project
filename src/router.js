@@ -25,13 +25,16 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, _, next) => {
-  if (to.meta.requiresAuth && !isAuthenticated.value)
-    next({
-      name: 'Login',
-      query: { redirect: to.fullPath },
-    })
-  else next()
+router.beforeEach(async (to, from) => {
+  if (
+    // make sure the user is authenticated
+    !isAuthenticated.value &&
+    // ❗️ Avoid an infinite redirect
+    to.name !== 'Login'
+  ) {
+    // redirect the user to the login page
+    return { name: 'Login' }
+  }
 })
 
 export default router
