@@ -1,18 +1,15 @@
 <script setup>
-import { ref } from 'vue'
 import FormResponseCard from '@/components/FormResponseCard.vue'
-import { useRouter, useRoute } from 'vue-router'
 import useAPI from '@/composables/useAPI'
-
-const router = useRouter()
-const route = useRoute()
+import { useAuth } from '@/composables/useAuth'
+const { isAuthenticated } = useAuth()
 
 const { getForms, forms } = useAPI()
 getForms()
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center text-center">
-    <div class="wrapper">
+    <div v-if="isAuthenticated" class="wrapper">
       <div><h1>Here's a list of forms you can respond to:</h1></div>
       <Suspense>
         <div v-for="form in forms" :key="form.ownerId" class="form-card" :form="form">

@@ -1,18 +1,15 @@
 <script setup>
 import SubmittedCard from '@/components/SubmittedCard.vue'
-import { ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
 import useAPI from '@/composables/useAPI'
-
-const router = useRouter()
-const route = useRoute()
-
+import { useAuth } from '@/composables/useAuth'
+const { isAuthenticated } = useAuth()
 const { getFormResponses, formResponses } = useAPI()
 getFormResponses()
+//console.log(isAuthenticated)
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center">
-    <div class="wrapper">
+    <div v-if="isAuthenticated" class="wrapper">
       <h1>Submitted Form Responses:</h1>
       <Suspense>
         <div>

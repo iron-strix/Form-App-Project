@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import FormCard from '@/components/FormCard.vue'
 import { useRouter } from 'vue-router'
 import useAPI from '@/composables/useAPI'
+import { useAuth } from '@/composables/useAuth'
+const { isAuthenticated } = useAuth()
 
 const router = useRouter()
 
@@ -68,7 +70,7 @@ computeForms()
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center">
-    <div class="wrapper">
+    <div v-if="isAuthenticated" class="wrapper">
       <div class="flex items-center justify-center">
         <button class="new-form-button" @click="newForm()">Create New Form</button>
         <button class="respond-form-button" @click="respondForm()">Respond to a Form</button>

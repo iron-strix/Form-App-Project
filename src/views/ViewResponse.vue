@@ -1,11 +1,13 @@
 <script setup>
 import FormSubmittedView from '@/components/FormSubmittedView.vue'
+import { useAuth } from '@/composables/useAuth'
+const { isAuthenticated } = useAuth()
 //console.log('hello there')
 </script>
 
 <template>
   <main class="flex min-h-screen items-center justify-center">
-    <div class="wrapper">
+    <div v-if="isAuthenticated" class="wrapper">
       <Suspense>
         <FormSubmittedView />
         <template #fallback><div>Loading...</div></template>

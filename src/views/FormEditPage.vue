@@ -1,13 +1,16 @@
 <script setup>
 import FormEditCard from '@/components/FormEditDocument.vue'
+import { useAuth } from '@/composables/useAuth'
+const { isAuthenticated } = useAuth()
 </script>
 <template>
   <main class="flex min-h-screen items-center justify-center">
-    <div class="wrapper"></div>
-    <Suspense>
-      <FormEditCard />
-      <template #fallback><div>Loading...</div></template>
-    </Suspense>
+    <div v-if="isAuthenticated" class="wrapper">
+      <Suspense>
+        <FormEditCard />
+        <template #fallback><div>Loading...</div></template>
+      </Suspense>
+    </div>
   </main>
 </template>
 
