@@ -13,14 +13,15 @@ getUser()
 const componentKey = ref(0)
 const render_forms = ref([])
 
-const forceRerender = () => {
+const forceRerender = async () => {
   componentKey.value += 1
 }
 
-function removeForm(formId, index) {
+async function removeForm(formId, index) {
   // console.log(formId)
   deleteForm(formId)
-  forms.value.splice(index, 1)
+  render_forms.value.splice(index, 1)
+  await new Promise((r) => setTimeout(r, 200))
   forceRerender()
 }
 
@@ -54,7 +55,7 @@ async function newForm() {
   }
 }
 async function computeForms() {
-  await new Promise((r) => setTimeout(r, 500))
+  await new Promise((r) => setTimeout(r, 1000))
 
   const result = forms.value.filter((obj) => {
     return obj.ownerId === localUser.value.userUUID
@@ -68,11 +69,13 @@ computeForms()
 <template>
   <main class="flex min-h-screen items-center justify-center">
     <div class="wrapper">
+      <div class="flex items-center justify-center">
+        <button class="new-form-button" @click="newForm()">Create New Form</button>
+        <button class="respond-form-button" @click="respondForm()">Respond to a Form</button>
+      </div>
       <Suspense>
-        <div class="grid w-auto content-center items-center justify-center bg-violet-600">
-          <button class="new-form-button" @click="newForm()">Create New Form</button>
-          <button class="respond-form-button" @click="respondForm()">Respond to a Form</button>
-          <h1 v-if="localUser.email">{{ localUser.email }}'s Owned Forms</h1>
+        <div class="grid w-auto content-center items-center justify-center rounded-lg bg-violet-700/50">
+          <h1 v-if="localUser.email">{{ localUser.email }}'s Owned Forms:</h1>
           <div class="sub-wrapper">
             <div v-for="(form, index) in render_forms" :key="form.ownerId" class="form-card" :form="form">
               <FormCard :key="componentKey" :form="form" />
@@ -96,20 +99,20 @@ computeForms()
   @apply relative;
 }
 .new-form-button {
-  @apply m-4 w-auto content-center rounded-md bg-gray-700 p-4 text-center text-white;
+  @apply m-4 w-auto content-center rounded-md bg-slate-700 p-4 text-center text-xl text-white transition duration-100 hover:scale-105 hover:bg-gray-500 hover:font-bold;
 }
 
 .respond-form-button {
-  @apply m-4 w-auto content-center rounded-md bg-gray-700 p-4 text-center text-white;
+  @apply m-4 w-auto content-center rounded-md bg-slate-700 p-4 text-center text-xl text-white transition duration-100 hover:scale-105 hover:bg-gray-500 hover:font-bold;
 }
 .wrapper {
-  @apply container mx-auto w-full;
+  @apply container -mt-60 w-full;
 
   & h1 {
-    @apply p-8 text-center align-top text-4xl font-thin text-slate-800;
+    @apply p-8 text-center align-top text-4xl font-thin text-white;
   }
 }
 .sub-wrapper {
-  @apply grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  @apply relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 }
 </style>

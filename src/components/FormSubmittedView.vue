@@ -1,39 +1,33 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 import useAPI from '@/composables/useAPI'
 
-const router = useRouter()
+//const router = useRouter()
 const route = useRoute()
 
-const { getForm, createResponse, localUser, getUser } = useAPI()
+const { getFormResponses, getFormResponse, getForm } = useAPI()
 
-getUser()
-const formResponse = await getForm(route.params.id)
+const formResponse = await getFormResponse(route.params.id)
 const formRef = ref(formResponse)
-const put_title = ref(formRef.value.name)
-const put_description = ref(formRef.value.description)
-const put_responses = ref([])
-const isLoading = ref(false)
+const form = await getForm(formRef.value.parentFormId)
 
-const collectResponses = () => {
-  isLoading.value = true
-  // fillResponses()
-  // console.log(put_title.value)
-  // console.log('Put responses:', put_responses)
-  const putData = {
-    ownerId: localUser.value.userUUID,
-    parentFormId: formRef.value.formId,
-    replies: put_responses.value,
-  }
-  console.log(putData)
-  createResponse(route.params.id, putData).then(reload(), console.log('promise didnt go'))
-}
+console.log(form)
+console.log('formRef value -- ', formRef.value)
+console.log(formRef.value['replies'][0])
 
-async function reload() {
-  await new Promise((r) => setTimeout(r, 500))
-  router.push('/submitted/')
-}
+const put_title = ref(form.name)
+const put_description = ref(form.description)
+const responses = ref(formRef.value['replies'])
+//const isLoading = ref(false)
+
+getFormResponses()
+//getUser()
+
+//const put_title = ref()
+//const put_description = ref(formRef.value.description)
+//const put_responses = ref([])
+//const isLoading = ref(false)
 </script>
 <template>
   <div class="card">
@@ -44,22 +38,13 @@ async function reload() {
       <div class="card-document-description">
         <div class="form-control-description" :placeholder="formRef.description">{{ put_description }}</div>
       </div>
-      <div v-for="(question, index) in formRef.body" :key="index" :question="question" class="card-document-text">
-        <div :id="question.value" class="form-control-question" :placeholder="question">{{ question.value }}</div>
-        <div class="font-bold text-gray-400">
-          <p v-show="showByIndex == index" class="inline">Response -></p>
-          <input
-            :id="index"
-            v-model="put_responses[index]"
-            class="p-4 font-light italic text-black"
-            placeholder="Your reponse here!"
-            @mouseover="showByIndex = index"
-            @mouseleave="showByIndex = null"
-          />
+      <div v-for="(question, index) in form.body" :key="index" :question="question" class="card-document-text">
+        <div :id="question.value" class="form-control-question" :placeholder="question">
+          {{ question.value }}
         </div>
+        <div :id="index" class="form-control-reply">-> {{ responses[index] }}</div>
       </div>
     </div>
-    <button class="card-document-submit" :disabled="isLoading" @click="collectResponses()">Send Form Response</button>
   </div>
 </template>
 <style scoped lang="postcss">
@@ -103,7 +88,7 @@ async function reload() {
   }
 
   .form-control {
-    @apply bg-gray-600 text-white;
+    @apply m-0;
 
     &-title {
       @apply font-bold text-white;
@@ -115,6 +100,10 @@ async function reload() {
 
     &-question {
       @apply text-left font-semibold text-white;
+    }
+
+    &-reply {
+      @apply rounded-lg bg-gray-600/50 pl-8 text-left text-lg italic text-gray-400;
     }
   }
 }

@@ -37,10 +37,10 @@ const form = ref(formResponse)
 
 <style scoped lang="postcss">
 .card {
-  @apply m-4 rounded-md bg-zinc-500 p-4 shadow-md transition duration-300 hover:scale-105 hover:bg-zinc-600 hover:shadow-2xl hover:shadow-zinc-900;
+  @apply m-4 rounded-md bg-zinc-600 p-4 shadow-md transition duration-100 hover:scale-105 hover:bg-zinc-500 hover:font-bold hover:shadow-2xl hover:shadow-zinc-800;
 
   .card-text {
-    @apply flex flex-col pt-2 text-center font-sans text-slate-800;
+    @apply flex flex-col pt-2 text-center font-sans text-gray-200;
   }
 }
 </style>

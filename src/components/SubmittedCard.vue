@@ -46,7 +46,7 @@ function computeName() {
   <div class="card">
     <RouterLink :to="`/viewResponse/${formResponse.formResponseId}`">
       <div class="card-text">
-        <p>{{ props.formResponse.formResponseId }} reply to {{ computedName }}</p>
+        <p>Reply to {{ computedName }} at {{ props.formResponse.createdAt }}</p>
       </div>
     </RouterLink>
   </div>
@@ -54,13 +54,10 @@ function computeName() {
 
 <style scoped lang="postcss">
 .card {
-  @apply rounded-md bg-zinc-500 p-4 shadow-md transition duration-300 hover:scale-105 hover:bg-zinc-600 hover:shadow-2xl hover:shadow-zinc-900;
-  img {
-    @apply m-2 mx-auto rounded-full object-contain shadow-lg shadow-zinc-600 ring-4 ring-zinc-400;
-  }
+  @apply m-4 rounded-md bg-zinc-600 p-4 shadow-md transition duration-100 hover:scale-105 hover:bg-zinc-500 hover:font-bold hover:shadow-2xl hover:shadow-zinc-800;
 
   .card-text {
-    @apply flex flex-col pt-2 text-center font-sans text-slate-800;
+    @apply flex flex-col pt-2 text-center font-sans text-gray-200;
   }
 }
 </style>

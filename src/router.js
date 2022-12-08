@@ -6,6 +6,7 @@ import FormEditPage from '@/views/FormEditPage.vue'
 import { useAuth } from '@/composables/useAuth'
 import FormResponseVue from './views/FormResponse.vue'
 import FormList from '@/views/FormList.vue'
+import ViewResponse from '@/views/ViewResponse.vue'
 
 const { isAuthenticated } = useAuth()
 
@@ -16,8 +17,7 @@ const routes = [
   { path: '/form/:id', name: 'Form', component: FormEditPage },
   { path: '/formList/', name: 'Form Responses List', component: FormList },
   { path: '/formResponse/:id', name: 'Form Response', component: FormResponseVue },
-  { path: '/settings', name: 'Settings', component: () => import('@/views/SettingsPage.vue') },
-  { path: '/admin', name: 'Admin', component: () => import('@/views/AdminPanelPage.vue') },
+  { path: '/viewResponse/:id', name: 'View Response', component: ViewResponse },
 ]
 
 const router = createRouter({

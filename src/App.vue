@@ -3,6 +3,5 @@ import NavMenu from '@/components/NavMenu.vue'
 </script>
 
 <template>
-  <NavMenu />
-  <RouterView />
+  <div class="bg-zinc-800"><NavMenu /> <RouterView /></div>
 </template>

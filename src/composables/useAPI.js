@@ -39,6 +39,11 @@ const getUser = async () => {
   })
 }
 
+const getUsers = async () => {
+  const { data } = await api.get('/users/')
+  return data
+}
+
 const getForms = async () => {
   const { data } = await api.get('/forms')
   forms.value = data
@@ -85,6 +90,7 @@ const useAPI = () => {
     getFormResponses,
     createResponse,
     getUser,
+    getUsers,
     getForms,
     getForm,
     putForm,

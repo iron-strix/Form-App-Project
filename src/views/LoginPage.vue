@@ -25,16 +25,20 @@ const logUserIn = async () => {
 </script>
 
 <template>
-  <form class="login-form" @submit.prevent="logUserIn">
-    <input v-model="username" type="text" placeholder="Username" />
-    <input v-model="password" type="password" placeholder="Password" />
-    <button type="submit" class="bg-green-600 py-4 px-4">Log In</button>
-  </form>
+  <main class="flex min-h-screen items-center justify-center">
+    <div class="wrapper">
+      <form class="login-form" @submit.prevent="logUserIn">
+        <input v-model="username" type="text" placeholder="Username" />
+        <input v-model="password" type="password" placeholder="Password" />
+        <button type="submit" class="rounded-lg bg-green-600 py-4 px-4 hover:bg-emerald-500">Log In</button>
+      </form>
+    </div>
+  </main>
 </template>
 
 <style lang="postcss" scoped>
 .login-form {
-  @apply mx-auto mt-80 flex max-w-md flex-col gap-4 rounded-md bg-zinc-500 p-8;
+  @apply mx-auto flex max-w-md flex-col justify-center gap-4 rounded-md bg-zinc-500 p-8;
   & input {
     @apply rounded-md px-4 py-2 font-sans text-xl ring-1 ring-zinc-700;
   }

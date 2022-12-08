@@ -11,9 +11,9 @@ const { getForms, forms } = useAPI()
 getForms()
 </script>
 <template>
-  <main class="flex min-h-screen items-center justify-center bg-gray-600 text-center">
+  <main class="flex min-h-screen items-center justify-center text-center">
     <div class="wrapper">
-      <div>Hello World, this is FormList.vue</div>
+      <div><h1>Here's a list of forms you can respond to:</h1></div>
       <Suspense>
         <div v-for="form in forms" :key="form.ownerId" class="form-card" :form="form">
           <FormResponseCard :form="form" />
@@ -23,3 +23,13 @@ getForms()
     </div>
   </main>
 </template>
+
+<style lang="postcss" scoped>
+.wrapper {
+  @apply container -mt-40 w-full rounded-lg bg-violet-700/50;
+
+  & h1 {
+    @apply p-8 text-center align-top text-4xl font-thin text-white;
+  }
+}
+</style>
