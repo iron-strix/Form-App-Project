@@ -12,7 +12,7 @@ getFormResponses()
     <div v-if="isAuthenticated" class="wrapper">
       <h1>Submitted Form Responses:</h1>
       <Suspense>
-        <div>
+        <div class="relative">
           <SubmittedCard
             v-for="formResponse in formResponses"
             :key="formResponse.ownerId"
@@ -28,7 +28,7 @@ getFormResponses()
 
 <style scoped lang="postcss">
 .wrapper {
-  @apply container -mt-40 w-full rounded-lg bg-violet-700/50;
+  @apply absolute w-4/5 rounded-lg bg-violet-700/50;
 
   & h1 {
     @apply p-8 text-center align-top text-4xl font-thin text-white;
